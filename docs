@@ -1,0 +1,166 @@
+Instructions to Set Up and Run the API Locally
+Follow these steps to set up and run the Movie Lobby API locally:
+
+1. Install Prerequisites
+   Make sure you have the following installed:
+
+Node.js (Version: 16.x.x)
+npm (Version: 8.x.x)
+MongoDB (Locally or use MongoDB Atlas for a cloud database)
+
+2. Clone the Project
+   Clone the repository to your local machine (or create a new project directory).
+
+git clone https://github.com/laxmikantasahoo1997/dazn-assessment.git
+cd dazn-assessment 3. Install Dependencies
+Install all the dependencies required for the project:
+
+npm install
+This will install the required libraries, such as:
+
+express - For creating the API server
+mongoose - For interacting with MongoDB
+cors - For handling cross-origin resource sharing
+dotenv - For managing environment variables
+body-parser - For parsing incoming request bodies
+supertest - library to test HTTP requests.
+jest - testing framework for unit and integration tests
+
+4. Set Up Environment Variables
+   Create a .env file in the root directory and add the following environment variables:
+
+.env
+PORT=3000
+MONGO_URI=mongodb://localhost:27017/movie-lobby
+
+MONGO_URI: URL for MongoDB connection (replace localhost with your MongoDB instance or use MongoDB Atlas).
+JWT_SECRET: Secret key used for signing JWT tokens (replace with your own secret). 5. Set Up MongoDB
+Make sure MongoDB is running on your local machine. If you are using MongoDB Atlas, you can skip this and use the cloud MongoDB URI instead.
+
+To run MongoDB locally:
+
+npm start
+
+6. Start the Server
+   Now that you have everything set up, run the following command to start the server:
+
+npm start
+Your API should now be running on http://localhost:3000.
+
+7. Access the API
+   You can test the API endpoints using Postman or curl.
+
+API Documentation
+This API allows users to interact with a movie lobby for an OTT application. Here are the available endpoints:
+
+1. List All Movies
+   GET /api/movies
+
+Description: Fetches all movies available in the lobby.
+
+Request:
+
+Method: GET
+URL: http://localhost:3000/api/movies
+Response:
+
+[
+{
+"_id": "63f44c15c09e6410df580ff8",
+"title": "Inception",
+"genre": "Sci-Fi",
+"rating": 9,
+"streamingLink": "http://www.xyz.com"
+}
+] 2. Search for a Movie by Title or Genre
+GET /api/search?q={query}
+
+Description: Searches for movies based on the title or genre field. The search is case-insensitive.
+
+Request:
+
+Method: GET
+URL: http://localhost:3000/api/search?q=Sci-Fi
+Response:
+
+[
+{
+"_id": "63f44c15c09e6410df580ff8",
+"title": "Inception",
+"genre": "Sci-Fi",
+"rating": 9,
+"streamingLink": "http://www.xyz.com"
+}
+] 3. Add a New Movie
+POST /api/movies
+
+Description: Adds a new movie to the lobby. Requires an admin token in the Authorization header.
+
+Request:
+
+Method: POST
+URL: http://localhost:3000/api/movies
+Headers:
+user-role = admin
+Body (JSON):
+{
+"title": "The Matrix",
+"genre": "Sci-Fi",
+"rating": 8.7,
+"streamingLink": "http://www.xyz.com"
+}
+Response:
+
+{
+"\_id": "63f44c15c09e6410df580ff9",
+"title": "The Matrix",
+"genre": "Sci-Fi",
+"rating": 8.7,
+"streamingLink": "http://www.xyz.com"
+} 4. Update an Existing Movie
+PUT /api/movies/:id
+
+Description: Updates an existing movie's information (title, genre, rating, or streaming link). Requires an admin token in the Authorization header.
+
+Request:
+
+Method: PUT
+URL: http://localhost:3000/api/movies/:id
+Replace :id with the actual movie ID (e.g., 63f44c15c09e6410df580ff8).
+Headers:
+user-role - admin
+Body (JSON):
+
+{
+"rating": 9.5
+}
+Response:
+
+{
+"\_id": "63f44c15c09e6410df580ff8",
+"title": "Inception",
+"genre": "Sci-Fi",
+"rating": 9.5,
+"streamingLink": "http://www.xyz.com"
+} 5. Delete a Movie
+DELETE /api/movies/:id
+
+Description: Deletes a movie from the lobby. Requires an admin token in the Authorization header.
+
+Request:
+
+Method: DELETE
+URL: http://localhost:3000/api/movies/:id
+Replace :id with the actual movie ID (e.g., 63f44c15c09e6410df580ff8).
+Headers:
+user-role - admin
+Response:
+
+{
+"message": "Movie deleted successfully"
+}
+
+---
+
+Testing: -
+To run the test cases please run - npm run test
