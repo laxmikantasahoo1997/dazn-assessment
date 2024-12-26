@@ -1,5 +1,5 @@
 Instructions to Set Up and Run the API Locally
-Follow these steps to set up and run the Movie Lobby API locally:
+Follow these steps to set up and run the app locally:
 
 1. Install Prerequisites
    Make sure you have the following installed:
@@ -12,7 +12,9 @@ MongoDB (Locally or use MongoDB Atlas for a cloud database)
    Clone the repository to your local machine (or create a new project directory).
 
 git clone https://github.com/laxmikantasahoo1997/dazn-assessment.git
-cd dazn-assessment 3. Install Dependencies
+and also change the base branch to master
+cd dazn-assessment
+Install Dependencies
 Install all the dependencies required for the project:
 
 npm install
@@ -100,8 +102,7 @@ Request:
 
 Method: POST
 URL: http://localhost:3000/api/movies
-Headers:
-user-role = admin
+Headers:user-role = admin
 Body (JSON):
 {
 "title": "The Matrix",
@@ -127,8 +128,7 @@ Request:
 Method: PUT
 URL: http://localhost:3000/api/movies/:id
 Replace :id with the actual movie ID (e.g., 63f44c15c09e6410df580ff8).
-Headers:
-user-role - admin
+Headers:user-role - admin
 Body (JSON):
 
 {
@@ -152,8 +152,7 @@ Request:
 Method: DELETE
 URL: http://localhost:3000/api/movies/:id
 Replace :id with the actual movie ID (e.g., 63f44c15c09e6410df580ff8).
-Headers:
-user-role - admin
+Headers: user-role - admin
 Response:
 
 {
@@ -162,5 +161,5 @@ Response:
 
 ---
 
-Testing: -
+Unit Testing: -
 To run the test cases please run - npm run test
